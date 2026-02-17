@@ -22,7 +22,7 @@ public class Persona {
     }
 
     // CONSTRUCTOR PARAMETRIZADO;
-    public Persona(String nombre, String apellido, LocalDate fechaNacimiento, String dni, Direccion direccion, Contacto contacto){
+    public Persona(String nombre, String apellido, LocalDate fechaNacimiento, Direccion direccion, Contacto contacto, String dni){
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;

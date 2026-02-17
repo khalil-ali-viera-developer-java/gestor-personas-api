@@ -1,5 +1,6 @@
 package ar.com.educacionIt.gestor_personas_digitalers.service.impl;
 
+import ar.com.educacionIt.gestor_personas_digitalers.dto.PersonaDTO;
 import ar.com.educacionIt.gestor_personas_digitalers.exception.PersonaNotFoundException;
 import ar.com.educacionIt.gestor_personas_digitalers.service.PersonaService;
 import ar.com.educacionIt.gestor_personas_digitalers.model.Persona;
@@ -87,6 +88,8 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     public Persona saveService(Persona persona) {
 
+        // DTO -> ENTITY;
+
         // VALIDACIÓN;
         // PERSONA;
         if(persona == null){
@@ -114,6 +117,21 @@ public class PersonaServiceImpl implements PersonaService {
         // PERSONA -> FECHANACIMIENTO;
         if(persona.getFechaNacimiento() == null){
             throw new IllegalArgumentException("La fecha de nacimiento de la persona no puede ser nula");
+        }
+
+        // PERSONA -> EDAD;
+
+        // PERSONA -> DNI;
+        if(persona.getDni() == null){
+            throw new IllegalArgumentException("El dni de la persona no puede ser nulo");
+        }
+
+        if(persona.getDni().isBlank()){
+            throw new IllegalArgumentException("El dni de la persona no puede estar vacio, tener espacios en blanco o tener caracteres de espacios en blanco");
+        }
+
+        if(!persona.getDni().matches("\\d{8}")){
+            throw new IllegalArgumentException("El dni de la persona debe tener exactamente 8 números");
         }
 
         // PERSONA -> DIRECCION;
@@ -151,6 +169,54 @@ public class PersonaServiceImpl implements PersonaService {
         if(!persona.getDireccion().getCodigoPostal().matches("\\d{4}")){
             throw new IllegalArgumentException("El código postal debe tener exactamente 4 números");
         }
+
+        // PERSONA -> CONTACTO;
+        if(persona.getContacto() == null){
+            throw new IllegalArgumentException("El contacto de la persona no puede ser nulo");
+        }
+
+        // PERSONA -> CONTACTO -> TELEFONOFIJO;
+        if(persona.getContacto().getTelefonoFijo() == null){
+            throw new IllegalArgumentException("El teléfono fijo del contacto no puede ser nulo");
+        }
+
+        if(persona.getContacto().getTelefonoFijo().isBlank()){
+            throw new IllegalArgumentException("El teléfono fijo del contacto no puede estar vacio, tener espacios en blanco o tener caracteres de espacios en blanco");
+        }
+
+        if(!persona.getContacto().getTelefonoFijo().matches( "\\d{8}")){
+            throw new IllegalArgumentException("El teléfono fijo del contacto debe tener exactamente 8 números");
+        }
+
+        // PERSONA -> CONTACTO -> TELEFONO CELULAR;
+        if(persona.getContacto().getTelefonoCelular() == null){
+            throw new IllegalArgumentException("El teléfono celular del contacto no puede ser nulo");
+        }
+
+        if(persona.getContacto().getTelefonoCelular().isBlank()){
+            throw new IllegalArgumentException("El teléfono celular del contacto no puede estar vacio, tener espacios en blanco o tener caracteres de espacios en blanco");
+        }
+
+        if(!persona.getContacto().getTelefonoCelular().matches("\\d{11}")){
+            throw new IllegalArgumentException("El teléfono celular del contacto debe tener exactamente 11 números");
+        }
+
+        // PERSONA -> CONTACTO -> EMAIL;
+        if(persona.getContacto().getEmail() == null){
+            throw new IllegalArgumentException("El email del contacto no puede ser nulo");
+        }
+
+        if(persona.getContacto().getEmail().isBlank()){
+            throw new IllegalArgumentException("El email del contacto no puede estar vacio, tener espacios en blanco o tener caracteres de espacios en blanco");
+        }
+
+        if(!persona.getContacto().getEmail().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")){
+            throw new IllegalArgumentException("El email del contacto debe ser un email valido");
+        }
+
+        // ENTITY -> DTO;
+
+        // RETURN DTO;
 
         return this.personaRepository.saveRepository(persona);
     }

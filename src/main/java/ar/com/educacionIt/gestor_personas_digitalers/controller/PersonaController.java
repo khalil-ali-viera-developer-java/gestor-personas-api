@@ -7,7 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ar.com.educacionIt.gestor_personas_digitalers.service.PersonaService;
+import ar.com.educacionIt.gestor_personas_digitalers.dto.PersonaDTO;
+import ar.com.educacionIt.gestor_personas_digitalers.dto.PersonaMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,9 +30,16 @@ public class PersonaController {
 
     // FINDALL();
     @GetMapping
-    public ResponseEntity<List<Persona>> findAllController() {
+    public ResponseEntity<List<PersonaDTO>> findAllController() {
         List<Persona> personaList = this.personaService.findAllService();
-        return ResponseEntity.ok(personaList);
+        List<PersonaDTO> dtos = new ArrayList<>();
+
+        for(Persona persona : personaList){
+            PersonaDTO dto = PersonaMapper.toDTO(persona);
+            dtos.add(dto);
+        }
+
+        return ResponseEntity.ok(dtos);
     }
 
     // FINDBY(LONG ID);
@@ -37,7 +47,8 @@ public class PersonaController {
     public ResponseEntity<?> findByController(@PathVariable Long id) {
         try {
             Persona persona = this.personaService.findByService(id);
-            return ResponseEntity.ok(persona); // 200;
+            PersonaDTO dto = PersonaMapper.toDTO(persona);
+            return ResponseEntity.ok(dto); // 200;
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage()); // 400;
         } catch (PersonaNotFoundException e) {
@@ -60,10 +71,18 @@ public class PersonaController {
 
     // SAVE(PERSONA PERSONA);
     @PostMapping
-    public ResponseEntity<?> saveController(@RequestBody Persona persona) {
+    public ResponseEntity<?> saveController(@RequestBody PersonaDTO personaDTO) {
         try{
-            Persona personaController = this.personaService.saveService(persona);
-            return ResponseEntity.status(HttpStatus.CREATED).body(personaController); // 200;
+            // DTO -> ENTITY;
+            Persona persona = PersonaMapper.toEntity(personaDTO);
+
+            // GUARDAR PERSONA;
+            Persona personaGuardada = this.personaService.saveService(persona);
+
+            // ENTITY -> DTO;
+            PersonaDTO response = PersonaMapper.toDTO(personaGuardada);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(response); // 201 CREATED;
         }catch (IllegalArgumentException e){
             return ResponseEntity.badRequest().body(e.getMessage()); // 400;
         }
