@@ -2,19 +2,25 @@ package ar.com.educacionIt.gestor_personas_digitalers.model;
 
 public class Direccion {
 
+    // ESTADO: ATRIBUTOS;
     private String calle;
     private String ciudad;
     private String codigoPostal;
 
+    // COMPORTAMIENTO: CONSTRUCTORES - MÉTODOS;
+    // CONSTRUCTOR POR DEFECTO;
     public Direccion(){
     }
 
+    // CONSTRUCTOR PARAMETRIZADO;
     public Direccion(String calle, String ciudad, String codigoPostal){
         this.calle = calle;
         this.ciudad = ciudad;
         this.codigoPostal = codigoPostal;
     }
 
+    // GETTERS Y SETTERS;
+    // CALLE;
     public String getCalle(){
         return this.calle;
     }
@@ -23,6 +29,7 @@ public class Direccion {
         this.calle = calle;
     }
 
+    // CIUDAD;
     public String getCiudad(){
         return this.ciudad;
     }
@@ -31,6 +38,7 @@ public class Direccion {
         this.ciudad = ciudad;
     }
 
+    // CODIGOPOSTAL;
     public String getCodigoPostal(){
         return this.codigoPostal;
     }

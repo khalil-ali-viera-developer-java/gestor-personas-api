@@ -2,7 +2,7 @@ package ar.com.educacionIt.gestor_personas_digitalers.dto;
 
 import java.time.LocalDate;
 
-public class PersonaDTO {
+public class PersonaResponseDTO {
 
     // ESTADO: ATRIBUTOS;
     // PERSONA;
@@ -24,11 +24,66 @@ public class PersonaDTO {
 
     // COMPORTAMIENTO: CONSTRUCTORES - GETTERS Y SETTERS - MÉTODOS;
     // CONSTRUCTOR POR DEFECTO;
-    public PersonaDTO(){
+    public PersonaResponseDTO(){
 
     }
 
     // GETTERS Y SETTERS;
+    // PERSONA;
+    // ID;
+    public Long getId(){
+        return this.id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
+    }
+
+    // NOMBRE;
+    public String getNombre(){
+        return this.nombre;
+    }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
+    // APELLIDO;
+    public String getApellido(){
+        return this.apellido;
+    }
+
+    public void setApellido(String apellido){
+        this.apellido = apellido;
+    }
+
+    // FECHANACIMIENTO;
+    public LocalDate getFechaNacimiento(){
+        return this.fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento){
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    // EDAD;
+    public int getEdad(){
+        return this.edad;
+    }
+
+    public void setEdad(int edad){
+        this.edad = edad;
+    }
+
+    // DNI;
+    public String getDni(){
+        return this.dni;
+    }
+
+    public void setDni(String dni){
+        this.dni = dni;
+    }
+
     // CONTACTO;
     // TELEFONOFIJO;
     public String getTelefonoFijo(){
@@ -84,60 +139,6 @@ public class PersonaDTO {
         this.codigoPostal = codigoPostal;
     }
 
-    // PERSONA;
-    // ID;
-    public Long getId(){
-        return this.id;
-    }
-
-    public void setId(Long id){
-        this.id = id;
-    }
-
-    // NOMBRE;
-    public String getNombre(){
-        return this.nombre;
-    }
-
-    public void setNombre(String nombre){
-        this.nombre = nombre;
-    }
-
-    // APELLIDO;
-    public String getApellido(){
-        return this.apellido;
-    }
-
-    public void setApellido(String apellido){
-        this.apellido = apellido;
-    }
-
-    // FECHANACIMIENTO;
-    public LocalDate getFechaNacimiento(){
-        return this.fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(LocalDate fechaNacimiento){
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    // EDAD;
-    public int getEdad(){
-        return this.edad;
-    }
-
-    public void setEdad(int edad){
-        this.edad = edad;
-    }
-
-    // DNI;
-    public String getDni(){
-        return this.dni;
-    }
-
-    public void setDni(String dni){
-        this.dni = dni;
-    }
 
 
 }

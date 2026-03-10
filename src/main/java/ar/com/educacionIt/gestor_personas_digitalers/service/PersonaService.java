@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface PersonaService {
 
+    List<Persona> findAllService();
     Persona findByService(Long id) throws PersonaNotFoundException;
     Persona findByService(String dni) throws PersonaNotFoundException;
-    List<Persona> findAllService();
     Persona saveService(Persona persona);
     void deleteByService(Long id) throws PersonaNotFoundException;
     Persona modifyByService(Long id, Persona persona) throws PersonaNotFoundException;

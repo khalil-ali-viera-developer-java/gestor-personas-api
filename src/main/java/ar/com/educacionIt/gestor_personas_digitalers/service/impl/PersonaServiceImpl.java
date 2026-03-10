@@ -1,6 +1,5 @@
 package ar.com.educacionIt.gestor_personas_digitalers.service.impl;
 
-import ar.com.educacionIt.gestor_personas_digitalers.dto.PersonaDTO;
 import ar.com.educacionIt.gestor_personas_digitalers.exception.PersonaNotFoundException;
 import ar.com.educacionIt.gestor_personas_digitalers.service.PersonaService;
 import ar.com.educacionIt.gestor_personas_digitalers.model.Persona;
@@ -75,8 +74,6 @@ public class PersonaServiceImpl implements PersonaService {
         return optionalPersona.get();
 
     }
-
-
 
     // FINDALL();
     @Override
